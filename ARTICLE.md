@@ -32,6 +32,25 @@ Architecturally, the system is divided into three primary layers:
                   └── Reflect: Cognitive reasoning loop
 ```
 
+```mermaid
+graph TD
+    A[Customer Interaction / Telemetry] -->|Retain Loop| H[Hindsight Memory Bank: 'dealdna']
+    
+    subgraph Biomimetic Memory Engine
+        H --> W[World Memories: Verified Stakeholder Facts & Deadlines]
+        H --> E[Experience Memories: Specific Objections & Interaction Logs]
+        H --> O[Observation Memories: Behavioral Inferences & Win/Loss Patterns]
+    end
+    
+    W -->|Scoped Recall| Q[Rep Query / Orchestrator Context]
+    E -->|Scoped Recall| Q
+    O -->|Scoped Recall| Q
+    
+    Q --> R[Reflect Loop: Strategic Synthesis & Next-Best Action]
+    R --> D[Commercial Outcome: Won / Lost Feedback]
+    D -->|Continuous Learning| H
+```
+
 ---
 
 ## The Core Problem: Why Naive RAG Fails in Sales Cycles
