@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/.venv*/
+.venv*/
+
+# Build outputs
+frontend/.next/
+frontend/out/
+frontend/coverage/
+build/
+dist/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment & Secret files (CRITICAL: Do NOT remove)
+**/.env
+**/.env.*
+.env
+.env.local
+.env.*.local
+*.env
+
+# Local test scratch scripts containing transient keys
+backend/test_*.py
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
