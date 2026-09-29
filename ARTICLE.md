@@ -2,7 +2,7 @@
 
 Most enterprise sales assistants are essentially glorified text wrappers around stateless LLM calls. If a customer mentions an aggressive pricing constraint in an introductory call in June, and an economic buyer raises a contractual requirement in August, conventional retrieval systems typically either miss the connection or drown the prompt context in hundreds of irrelevant chunked tokens.
 
-When we designed DealMindAI, we set out to solve a specific problem: enterprise B2B sales cycles run for months across fragmented stakeholders, yet language models inherently suffer from conversational amnesia. Instead of building yet another standard RAG pipeline that treats meeting notes as generic text documents, we built a stateful sales intelligence engine with persistent cognitive memory powered by [Vectorize agent memory](https://vectorize.io/what-is-agent-memory) and [Hindsight](https://github.com/vectorize-io/hindsight).
+When we designed DealMindAI, we set out to solve a specific problem: enterprise B2B sales cycles run for months across fragmented stakeholders, yet language models inherently suffer from conversational amnesia. Instead of building yet another standard RAG pipeline that treats meeting notes as generic text documents, we built a stateful sales intelligence engine with persistent cognitive memory powered by [Vectorize agent memory](https://vectorize.io/what-is-agent-memory) and the open-source [Hindsight GitHub repository](https://github.com/vectorize-io/hindsight).
 
 Here is how we structured the system, why naive vector search failed our early tests, and how we implemented biomimetic memory loops in production.
 
@@ -15,7 +15,7 @@ DealMindAI sits between raw interaction telemetry (CRM notes, emails, call summa
 Architecturally, the system is divided into three primary layers:
 
 1. **Ingestion & State Layer (FastAPI + PostgreSQL)**: Receives CRM interaction events, normalizes metadata, and maintains relational models for companies, deals, touchpoints, and commercial outcomes.
-2. **Cognitive Memory Layer ([Hindsight Memory Engine](https://hindsight.vectorize.io/))**: Houses a dedicated memory bank (`dealdna`). It categorizes deal interactions into distinct memory types: *World* memories (verifiable facts about budgets, organizational hierarchy, and constraints), *Experience* memories (chronological interaction logs and stakeholder pushback), and *Observation* memories (inferred buyer tendencies and behavioral patterns).
+2. **Cognitive Memory Layer**: Houses a dedicated memory bank (`dealdna`) powered by Hindsight. As detailed in the [Hindsight documentation](https://hindsight.vectorize.io/), the engine categorizes deal interactions into distinct memory types: *World* memories (verifiable facts about budgets, organizational hierarchy, and constraints), *Experience* memories (chronological interaction logs and stakeholder pushback), and *Observation* memories (inferred buyer tendencies and behavioral patterns).
 3. **Execution & Reasoning Orchestrator**: A multi-model pipeline that accepts rep queries, issues semantic and tag-scoped recall requests to Hindsight, evaluates retrieved evidence, and generates actionable strategic next steps.
 
 ```
